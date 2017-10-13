@@ -1,0 +1,702 @@
+<style type="text/css">
+	.input-row{
+		margin-bottom: 2%;
+	}
+	.last-row{
+		height: 160px;
+	}
+	.email-g{
+		margin-top: 64px;
+	}
+	.form-header{
+		margin-top: 0px;
+		margin-bottom: 30px;
+	}
+	.first-header{
+		margin-top: 15px;
+	}
+	.radio-row{
+		height: 34px;
+	}
+	.corp-copy{
+		/*padding: 0% 5%;*/
+	}
+	.email-gr{
+		margin-top: 50px;
+	}
+	.airline-header{
+		margin-bottom: 10px;
+	}
+	.airline-p{
+		margin-bottom: 20px;
+	}
+	.airline-gr{
+		margin-top: 70px;
+	}
+	#comment{
+		width: 100%;
+	}
+	.btn-row{
+		text-align: center;
+		margin-top: 2%;
+	}
+	.copyP{
+		text-align: justify;
+	}
+	.copyP h3{
+		margin-bottom: 20px;
+	}
+	.copyP p{
+		/*margin-bottom: 30px;*/
+	}
+	.copyP h4{
+		margin-bottom: 20px;
+	}
+	.red{
+		color: red;
+	}
+	.green{
+		color: green;
+	}
+</style>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12 copyP">
+			<h3>Corporate Traveler Profile</h3>
+			<% if flash[:errors] %>
+				<% flash[:errors].each do |val| %>
+					<p class="red"><%= val %></p>
+				<% end %>
+			<% end %>
+			<% if flash[:success] %>
+				<p class="green"><%= flash[:success] %></p>
+			<% end %>
+			<!-- <h4>For your convenience, please fill out our Traveler Profile and submit it via ArcherCorporateTravel.com</h4> -->
+			<div class="col-sm-6">
+			<p>We will store the information in our computer reservation system. We utilize this information to insure your travel arrangements are exactly as you like them and your frequent flyer miles, seating preferences and room type are correct on every reservation.</p>
+ 
+			<p>Please complete the following form and click "Submit" when finished.</p>
+			</div>
+			<div class="col-sm-6">
+			<p>Feel free to update your Traveler Profile as frequently as necessary. If you wish to change credit card numbers, diet information, seating preferences, etc., we will make sure all updates are processed immediately. Call us toll free with any questions at 1-800-ARCHERS.</p>
+			 
+			<p>NOTE: In order to ensure the safety of your account, we will contact you via phone for sensitive passport and payment information to keep in your profile.</p>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-6">
+			<h4 class='form-header first-header'>Login Info</h4>
+			<form action="/users" method="post" id="new_user_form">
+				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="email" class="col-sm-4 control-label">Email:</label>
+					    <div class="col-sm-8">
+					        <input name="user[email]" type="text" class="form-control" id="email" required/>
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="password" class="col-sm-4 control-label">Password:</label>
+					    <div class="col-sm-8">
+					        <input name="user[password]" type="password" class="form-control" id="password" required/>
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="password_confirmation" class="col-sm-4 control-label">Password Confirmation:</label>
+					    <div class="col-sm-8">
+					        <input name="user[password_confirmation]" type="password" class="form-control passwordconf" id="password_confirmation" required/>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+			</div>
+		</div>
+	<hr>
+	<div class="row">
+		<div class="col-sm-6">
+			<h4 class='form-header first-header'>Corporate Profile</h4>
+<!-- 				<div class="row input-row radio-row">
+				<span class="radio-label col-sm-4">Profile Type:</span>
+					<div class="col-sm-8">
+				  <label class="radio-inline"><input type="radio" name="sub_type">New Profile</label>
+				  <label class="radio-inline"><input type="radio" name="sub_type">Update Profile</label>
+				  	</div>
+				</div> -->
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="first" class="col-sm-4 control-label">First Name:</label>
+					    <div class="col-sm-8">
+					        <input name="user[first]" type="text" class="form-control" id="first" required/>
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="last" class="col-sm-4 control-label">Last Name:</label>
+					    <div class="col-sm-8">
+					        <input name="user[last]" type="text" class="form-control" id="last" required/>
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="dob" class="col-sm-4 control-label">Date of Birth:</label>
+					    <div class="col-sm-8">
+					        <input name="user[dob]" type="date" class="form-control" id="dob" />
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="row input-row">
+					<div class="form-group email-g">
+					    <label for="title" class="col-sm-4 control-label">Job Title:</label>
+					    <div class="col-sm-8">
+					        <input name="user[title]" type="text" class="form-control" id="title" />
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="dept" class="col-sm-4 control-label">Cost Center / Dept #:</label>
+					    <div class="col-sm-8">
+					        <input name="user[dept]" type="text" class="form-control" id="dept" />
+					    </div>
+					</div>
+				</div>
+				<div class="row input-row">
+					<div class="form-group">
+					    <label for="company" class="col-sm-4 control-label">Company:</label>
+					    <div class="col-sm-8">
+					        <input name="user[company]" type="text" class="form-control" id="company" />
+					    </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+			<div class="row">
+				<div class="col-sm-6">
+				<h4 class="form-header">Company Address</h4>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_address" class="col-sm-4 control-label">Address:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_address]" type="text" class="form-control" id="company_address" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_address_two" class="col-sm-4 control-label"></label>
+						    <div class="col-sm-8">
+						        <input name="user[company_address_two]" type="text" class="form-control" id="company_address_two" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_city" class="col-sm-4 control-label">City:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_city]" type="text" class="form-control" id="company_city" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_state" class="col-sm-4 control-label">State / Region:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_state]" type="text" class="form-control" id="company_state" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_zip" class="col-sm-4 control-label">Zip Code:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_zip]" type="text" class="form-control" id="company_zip" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="company_country" class="col-sm-4 control-label">Country:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_country]" type="text" class="form-control" id="company_country" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group email-gr">
+						    <label for="company_email" class="col-sm-4 control-label">Company Email:</label>
+						    <div class="col-sm-8">
+						        <input name="user[company_email]" type="text" class="form-control" id="company_email" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="office_phone" class="col-sm-4 control-label">Office Phone:</label>
+						    <div class="col-sm-8">
+						        <input name="user[office_phone]" type="text" class="form-control" id="office_phone" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="office_fax" class="col-sm-4 control-label">Office Fax:</label>
+						    <div class="col-sm-8">
+						        <input name="user[office_fax]" type="text" class="form-control" id="office_fax" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="office_contact" class="col-sm-4 control-label">Office Contact:</label>
+						    <div class="col-sm-8">
+						        <input name="user[office_contact]" type="text" class="form-control" id="office_contact" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-6">
+				<h4 class="form-header">Home Address</h4>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="home_address" class="col-sm-4 control-label">Street:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_address]" type="text" class="form-control" id="home_address" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="home_city" class="col-sm-4 control-label">City:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_city]" type="text" class="form-control" id="home_city" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="home_state" class="col-sm-4 control-label">State / Region:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_state]" type="text" class="form-control" id="home_state" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="home_zip" class="col-sm-4 control-label">Zip Code:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_zip]" type="text" class="form-control" id="home_zip" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="home_country" class="col-sm-4 control-label">Country:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_country]" type="text" class="form-control" id="home_country" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group email-gr">
+						    <label for="home_phone" class="col-sm-4 control-label">Home Phone:</label>
+						    <div class="col-sm-8">
+						        <input name="user[home_phone]" type="text" class="form-control" id="home_phone" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="cell_phone" class="col-sm-4 control-label">Cell Phone:</label>
+						    <div class="col-sm-8">
+						        <input name="user[cell_phone]" type="text" class="form-control" id="cell_phone" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-6">
+				<h4 class="form-header">Emergency Contact</h4>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="emergency_first" class="col-sm-4 control-label">First Name:</label>
+						    <div class="col-sm-8">
+						        <input name="user[emergency_first]" type="text" class="form-control" id="emergency_first" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="emergency_last" class="col-sm-4 control-label">Last Name:</label>
+						    <div class="col-sm-8">
+						        <input name="user[emergency_last]" type="text" class="form-control" id="emergency_last" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="emergency_phone" class="col-sm-4 control-label">Phone Number:</label>
+						    <div class="col-sm-8">
+						        <input name="user[emergency_phone]" type="text" class="form-control" id="emergency_phone" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="emergency_relationship" class="col-sm-4 control-label">Relationship:</label>
+						    <div class="col-sm-8">
+						        <input name="user[emergency_relationship]" type="text" class="form-control" id="emergency_relationship" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-6">
+				<h4 class="form-header airline-header">Airline Preferences</h4>
+				<p class="airline-p">Frequest Flyer Member Numbers</p>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="airline_name_1" class="col-sm-4 control-label">Airline #1:</label>
+						    <div class="col-sm-8">
+						        <input name="user[airline_1]" type="text" class="form-control" id="airline_name_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="frequent_flyer_1" class="col-sm-4 control-label">Frequent Flyer #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[frequent_1]" type="text" class="form-control" id="frequent_flyer_1" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row ">
+						<div class="form-group airline-gr">
+						    <label for="airline_name_3" class="col-sm-4 control-label">Airline #3:</label>
+						    <div class="col-sm-8">
+						        <input name="user[airline_2]" type="text" class="form-control" id="airline_name_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="frequent_flyer_3" class="col-sm-4 control-label">Frequent Flyer #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[frequent_2]" type="text" class="form-control" id="frequent_flyer_3" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="airline_name_2" class="col-sm-4 control-label">Airline #2:</label>
+						    <div class="col-sm-8">
+						        <input name="user[airline_3]" type="text" class="form-control" id="airline_name_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="frequent_flyer_2" class="col-sm-4 control-label">Frequent Flyer #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[frequent_3]" type="text" class="form-control" id="frequent_flyer_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="seating_preference" class="col-sm-4 control-label">Seating Preference:</label>
+						    <div class="col-sm-8">
+						        <input name="user[seating_preference]" type="text" class="form-control" id="seating_preference" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="meal_request" class="col-sm-4 control-label">Special Meal Request:</label>
+						    <div class="col-sm-8">
+						        <input name="user[special_meal]" type="text" class="form-control" id="meal_request" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="airline_name_4" class="col-sm-4 control-label">Airline #4:</label>
+						    <div class="col-sm-8">
+						        <input name="user[airline_4]" type="text" class="form-control" id="airline_name_4" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="frequent_flyer_4" class="col-sm-4 control-label">Frequent Flyer #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[frequent_4]" type="text" class="form-control" id="frequent_flyer_4" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-6">
+				<h4 class="form-header airline-header">Hotel Preferences</h4>
+				<p class="airline-p">Include corporate numbers and personal priority numbers if applicable</p>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="hotel_name_1" class="col-sm-4 control-label">Hotel #1:</label>
+						    <div class="col-sm-8">
+						        <input name="user[hotel_1]" type="text" class="form-control" id="hotel_name_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="guest_1" class="col-sm-4 control-label">Guest #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[guest_1]" type="text" class="form-control" id="guest_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="hotel_name_2" class="col-sm-4 control-label">Hotel #2:</label>
+						    <div class="col-sm-8">
+						        <input name="user[hotel_2]" type="text" class="form-control" id="hotel_name_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="guest_2" class="col-sm-4 control-label">Guest #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[guest_2]" type="text" class="form-control" id="guest_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row radio-row">
+					<span class="radio-label col-sm-4">Smoking Preference:</span>
+						<div class="col-sm-8">
+					  <label class="radio-inline"><input type="radio" name="user[smoking]">Smoking</label>
+					  <label class="radio-inline"><input type="radio" name="user[smoking]">Non-Smoking</label>
+					  	</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group airline-gr">
+						    <label for="hotel_name_3" class="col-sm-4 control-label">Hotel #3:</label>
+						    <div class="col-sm-8">
+						        <input name="user[hotel_3]" type="text" class="form-control" id="hotel_name_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="guest_3" class="col-sm-4 control-label">Guest #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[guest_3]" type="text" class="form-control" id="guest_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="hotel_name_4" class="col-sm-4 control-label">Hotel #4:</label>
+						    <div class="col-sm-8">
+						        <input name="user[hotel_4]" type="text" class="form-control" id="hotel_name_4" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="guest_4" class="col-sm-4 control-label">Guest #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[guest_4]" type="text" class="form-control" id="guest_4" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+			<div class="col-sm-6">
+				<h4 class="form-header airline-header">Car Rental Preferences</h4>
+				<p class="airline-p">Include corporate numbers and priority account numbers if applicable</p>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_name_1" class="col-sm-4 control-label">Car Rental Company #1:</label>
+						    <div class="col-sm-8">
+						        <input name="user[rental_1]" type="text" class="form-control" id="car_name_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_type_1" class="col-sm-4 control-label">Type of Vehicle:</label>
+						    <div class="col-sm-8">
+						        <input name="user[type_1]" type="text" class="form-control" id="car_type_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_club_1" class="col-sm-4 control-label">Club #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[club_1]" type="text" class="form-control" id="car_club_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_discount_1" class="col-sm-4 control-label">Discount #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[discount_1]" type="text" class="form-control" id="car_discount_1" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_name_2" class="col-sm-4 control-label">Car Rental Company #2:</label>
+						    <div class="col-sm-8">
+						        <input name="user[rental_2]" type="text" class="form-control" id="car_name_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_type_2" class="col-sm-4 control-label">Type of Vehicle:</label>
+						    <div class="col-sm-8">
+						        <input name="user[type_2]" type="text" class="form-control" id="car_type_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_club_2" class="col-sm-4 control-label">Club #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[club_2]" type="text" class="form-control" id="car_club_2" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_discount_2" class="col-sm-4 control-label">Discount #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[discount_2]" type="text" class="form-control" id="car_discount_2" />
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row input-row">
+						<div class="form-group airline-gr">
+						    <label for="car_name_3" class="col-sm-4 control-label">Car Rental Company #3:</label>
+						    <div class="col-sm-8">
+						        <input name="cuser[rental_3]" type="text" class="form-control" id="car_name_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_type_3" class="col-sm-4 control-label">Type of Vehicle:</label>
+						    <div class="col-sm-8">
+						        <input name="user[type_3]" type="text" class="form-control" id="car_type_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_club_3" class="col-sm-4 control-label">Club #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[club_3]" type="text" class="form-control" id="car_club_3" />
+						    </div>
+						</div>
+					</div>
+					<div class="row input-row">
+						<div class="form-group">
+						    <label for="car_discount_3" class="col-sm-4 control-label">Discount #:</label>
+						    <div class="col-sm-8">
+						        <input name="user[discount_3]" type="text" class="form-control" id="car_discount_3" />
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<hr>
+			<div class="row">
+				<div class="col-sm-12">
+					<h5>Please leave us any additional information you might need:</h5>
+					<textarea class="form-control" name="user[additional_info]" rows="8" id="comment"></textarea>
+					<div class="row btn-row">
+						<button class="btn btn-md btn-sample">Submit</button>
+					</div>
+				</div>
+			</div>
+			<hr>
+		</form>
+	</div>
+</div>
+<div class="last-row">
+</div>
+<script type="text/javascript">
+$(document).on('turbolinks:load', function() {
+    $('#new_user_form').validate({
+        rules: {
+            "user[email]": {
+                required: true
+            },
+            "user[password]": {
+                required: true
+            },
+            "user[password_confirmation]": {
+            	required: true
+            },
+            "user[first]": {
+                required: true
+            },
+            "user[last]": {
+                required: true
+            },
+
+        },
+        // highlight: function (element) {
+        //     $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+        // },
+        // success: function (element) {
+        //     element.closest('.form-group').removeClass('has-error').addClass('has-success');
+        // }
+    });
+	$(".passwordconf").rules("add", { 
+	  equalTo: "#password"
+	});
+});
+</script>

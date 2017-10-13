@@ -1,0 +1,7 @@
+<div class="container">
+<h4>Import Data</h4>
+	<%= form_tag import_users_path, multipart: true do %>
+		<%= file_field_tag :file %>
+		<%= submit_tag "Import" %>
+	<% end %>
+</div>
