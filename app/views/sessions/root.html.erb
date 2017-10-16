@@ -85,6 +85,9 @@
 			<% if flash[:login_errors] %>
 				<h5 class="red"><%= flash[:login_errors] %></h5>
 			<% end %>
+      <% if flash[:success] %>
+        <h5 class="green"><%= flash[:success] %></h5>
+      <% end %>
 			<h3 class="bottom_header">If you created a profile but never recieved a password, click <a href="#" data-toggle="modal" data-target="#myModal">here</a> for a temporary one.</h2>
 		</div>
 	</div>

@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 		redirect_to "/users/#{@user.id}" and return
 	end
 	def recover
-		@user = User.find_by(email: params['email'])
+		@user = User.find_by(email: params['email'].downcase)
 		if !@user
 			flash[:login_errors] = "Email not found"
 		else

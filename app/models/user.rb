@@ -1,9 +1,13 @@
 class User < ApplicationRecord
-	validates :first, :last, :email, :password, presence: true
+	validates :first, :last, :password, presence: true
 	has_secure_password
 	email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 	validates :email, :uniqueness => true, :format => { :with => email_regex }
-	validates_uniqueness_of :email, :case_sensitive => false
+   before_save :downcase_fields
+
+   def downcase_fields
+      self.email.downcase!
+   end
 	def self.import(file)
 		  spreadsheet = Roo::Spreadsheet.open(file.path)
 		  header = spreadsheet.row(1)

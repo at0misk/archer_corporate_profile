@@ -67,6 +67,7 @@
 				<% flash[:errors].each do |val| %>
 					<p class="red"><%= val %></p>
 				<% end %>
+				<p class="red">If you forgot your password, or need to recover your account, go <a href="/">here</a> and click Forgot Password.
 			<% end %>
 			<% if flash[:success] %>
 				<p class="green"><%= flash[:success] %></p>
