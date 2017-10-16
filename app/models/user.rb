@@ -1,8 +1,8 @@
 class User < ApplicationRecord
 	validates :first, :last, :password, presence: true
 	has_secure_password
-	email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
-	validates :email, :uniqueness => true, :format => { :with => email_regex }
+	# email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
+	# validates :email, :uniqueness => true, :format => { :with => email_regex }
    before_save :downcase_fields
 
    def downcase_fields
