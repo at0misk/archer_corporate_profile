@@ -20,6 +20,10 @@ class UsersController < ApplicationController
 	def show
 		if session[:user_id]
 			@user = User.find(session[:user_id])
+			if @user.permod
+				@user = User.find(params['id'])
+			else
+			end
 		else
 			flash[:login_errors] = "Please login"
 			redirect_to "/" and return
@@ -27,8 +31,17 @@ class UsersController < ApplicationController
 	end
 	def update
 		@user = User.find(params[:id])
-		@user.update(user_params)
-		redirect_to "/users/#{@user.id}"
+		@admin = User.find(session[:user_id])
+		if @admin.permod
+			@user.update(user_params)
+			@user.save(validate:false)
+			flash[:success] = "Update Successful"
+			redirect_to "/admins/users/#{@user.id}" and return
+		else
+			@user.update(user_params)
+		end
+		flash[:success] = "Update Successful"
+		redirect_to "/users/#{@user.id}" and return
 	end
 	def recover
 		@user = User.find_by(email: params['email'])

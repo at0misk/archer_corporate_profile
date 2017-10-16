@@ -7,4 +7,9 @@ Rails.application.routes.draw do
   get '/import' => 'sessions#import'
   post '/sessions' => 'sessions#new'
   post '/recover' => 'users#recover'
+  get '/admin_dash' => 'admins#dash'
+  get '/admins/users/:id' => 'admins#users'
+  post '/admins/users/search' => 'admins#users_search'
+  get '/admins/users_found' => 'admins#users_found'
+  get '/admins/delete_user/:id' => 'admins#delete_user'
 end

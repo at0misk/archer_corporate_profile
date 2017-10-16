@@ -1,0 +1,94 @@
+<style type="text/css">
+	.main-header{
+		text-align: center;
+		margin-bottom: 20px;
+	}
+	.pag-col{
+		text-align: center;
+		background: #d8d8d8;
+	}
+	.lookup-header{
+		display: inline-block;
+	}
+	.navbar-form{
+		display: inline-block;
+	}
+	.lookup-div{
+		float: right;
+		margin-top: 15px;
+	}
+	.top-col{
+	    background-color: #587fa2;
+	    color: white;
+	}
+	.search-bar{
+		min-width: 210px;
+	}
+	.back{
+		color: white;
+		text-align: center;
+		margin-top: 0px;
+		text-decoration: underline;
+	}
+</style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-12 top-col">
+			<div class="col-sm-4">
+			</div>
+			<div class="col-sm-4">
+				<h1 class="main-header">Traveler Profiles</h1>
+			</div>
+			<div class="col-sm-4">
+				<div class="lookup-div">
+					<h4 class="lookup-header">Search</h4>
+					<form class="navbar-form" role="search" method="post" action="/admins/users/search">
+					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+					<div class="input-group">
+						<input type="text" class="form-control serach-bar" placeholder="Email, Name, Company, Etc.." name="search" id="srch-term">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+						</div>
+					</div>
+					</form>
+					<a href="/admin_dash" class="back"><h5 class="back">Reset Search</h5></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Company</th>
+						<th>Title</th>
+						<th>Email</th>
+						<th>Home Phone</th>
+						<th>Cell Phone</th>
+						<th>Date of Birth</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @users.each do |val| %>
+						<tr>
+							<td><a href="/admins/users/<%= val.id %>"><%= val.first %> <%= val.last %></a></td>
+							<td><%= val.company %></td>
+							<td><%= val.title %></td>
+							<td><%= val.email %></td>
+							<td><%= val.home_phone %></td>
+							<td><%= val.cell_phone %></td>
+							<td><%= val.dob %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12 pag-col">
+			<%= will_paginate @users %>
+		</div>
+	</div>
+</div>

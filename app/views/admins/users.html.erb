@@ -58,12 +58,19 @@
 	.green{
 		color: green;
 	}
+	.delete-btn{
+	    position: absolute;
+	    right: 0;
+	    top: 15px;
+	}
 </style>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 copyP">
-			<h2>Welcome, <%= @user.first %> <%= @user.last %></h2>
-			<h3>Corporate Traveler Profile</h3>
+			<h2>Profile for <%= @user.first %> <%= @user.last %></h2>
+			<a href="/admin_dash"><h5 class="back">Back to Dashboard</h5></a>
+			<a href="/admins/delete_user/<%= @user.id %>" onclick="return confirm('Are you sure?')"><button class="btn btn-danger delete-btn">Delete Profile</button></a>
+			<!-- <h3>Corporate Traveler Profile</h3> -->
 			<% if flash[:errors] %>
 				<% flash[:errors].each do |val| %>
 					<p class="red"><%= val %></p>
@@ -73,7 +80,7 @@
 				<p class="green"><%= flash[:success] %></p>
 			<% end %>
 			<!-- <h4>For your convenience, please fill out our Traveler Profile and submit it via ArcherCorporateTravel.com</h4> -->
-			<div class="col-sm-6">
+<!-- 			<div class="col-sm-6">
 			<p>We will store the information in our computer reservation system. We utilize this information to insure your travel arrangements are exactly as you like them and your frequent flyer miles, seating preferences and room type are correct on every reservation.</p>
  
 			<p>Please complete the following form and click "Submit" when finished.</p>
@@ -82,14 +89,14 @@
 			<p>Feel free to update your Traveler Profile as frequently as necessary. If you wish to change credit card numbers, diet information, seating preferences, etc., we will make sure all updates are processed immediately. Call us toll free with any questions at 1-800-ARCHERS.</p>
 			 
 			<p>NOTE: In order to ensure the safety of your account, we will contact you via phone for sensitive passport and payment information to keep in your profile.</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<hr>
 	<div class="row">
 		<div class="col-sm-6">
 			<h4 class='form-header first-header'>Login Info</h4>
-			<form action="/users/<%= session[:user_id] %>" method="post" id="new_user_form">
+			<form action="/users/<%= @user.id %>" method="post" id="new_user_form">
 				<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 				<input name="_method" value="PATCH" type="hidden">
 				<div class="row input-row">
@@ -104,7 +111,7 @@
 					<div class="form-group">
 					    <label for="password" class="col-sm-4 control-label">Password:</label>
 					    <div class="col-sm-8">
-					        <input name="user[password]" type="password" class="form-control" id="password" required/>
+					        <input name="user[password]" type="password" class="form-control" id="password"/>
 					    </div>
 					</div>
 				</div>
@@ -112,7 +119,7 @@
 					<div class="form-group">
 					    <label for="password_confirmation" class="col-sm-4 control-label">Password Confirmation:</label>
 					    <div class="col-sm-8">
-					        <input name="user[password_confirmation]" type="password" class="form-control passwordconf" id="password_confirmation" required/>
+					        <input name="user[password_confirmation]" type="password" class="form-control passwordconf" id="password_confirmation"/>
 					    </div>
 					</div>
 				</div>
@@ -680,12 +687,6 @@ $(document).on('turbolinks:load', function() {
         rules: {
             "user[email]": {
                 required: true
-            },
-            "user[password]": {
-                required: true
-            },
-            "user[password_confirmation]": {
-            	required: true
             },
             "user[first]": {
                 required: true

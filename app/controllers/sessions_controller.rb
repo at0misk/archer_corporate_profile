@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
 		if @user
 			if @user.authenticate(params['password'])
 				session[:user_id] = @user.id
-				redirect_to "/users/#{@user.id}" and return
+				if @user.permod
+					redirect_to "/admin_dash" and return
+				else
+					redirect_to "/users/#{@user.id}" and return
+				end
 			else
 				flash[:login_errors] = "Incorrect Password"
 			end
