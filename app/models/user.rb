@@ -15,6 +15,9 @@ class User < ApplicationRecord
 		    row = Hash[[header, spreadsheet.row(i)].transpose]
 		    user = find_by(id: row["id"]) || new
 		    user.attributes = row.to_hash
+			random_password = Array.new(6).map { rand(10).to_s }.join
+			user.password = random_password
+			user.password_confirmation = random_password
 		    user.save!
 		  end
 	end
