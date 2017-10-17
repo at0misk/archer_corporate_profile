@@ -40,8 +40,8 @@
 	<div class="row">
 		<div class="col-sm-12 main_col">
 			<%= image_tag('corporate_logo', :class => 'logo') %><h2 class="main_header">Archer Travel Corporate Profile</h2>
-			<h4>Please login to view your profile</h4>
-			<h4>Or click <a href="/users/new">here</a> to create a profile</h4>
+      <h4 class="bottom_header">If you created a profile but never recieved a password, click <a href="#" data-toggle="modal" data-target="#myModal">here</a> for a temporary one.</h4>
+			<h4>Click <a href="/users/new">here</a> to create a profile, or login below</h4>
 		</div>
 	</div>
 	<div class="row form-row">
@@ -88,7 +88,6 @@
       <% if flash[:success] %>
         <h5 class="green"><%= flash[:success] %></h5>
       <% end %>
-			<h3 class="bottom_header">If you created a profile but never recieved a password, click <a href="#" data-toggle="modal" data-target="#myModal">here</a> for a temporary one.</h2>
 		</div>
 	</div>
 </div>
