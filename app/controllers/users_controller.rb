@@ -35,12 +35,12 @@ class UsersController < ApplicationController
 		if @admin.permod
 			@user.update(user_params)
 			@user.save(validate:false)
-			flash[:success] = "Update Successful"
+			flash[:success] = "Profile Updated Successfully!"
 			redirect_to "/admins/users/#{@user.id}" and return
 		else
 			@user.update(user_params)
 		end
-		flash[:success] = "Update Successful"
+		flash[:success] = "Profile Updated Successfully!"
 		redirect_to "/users/#{@user.id}" and return
 	end
 	def recover

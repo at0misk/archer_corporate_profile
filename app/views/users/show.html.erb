@@ -58,11 +58,19 @@
 	.green{
 		color: green;
 	}
+	.logout{
+		float: right;
+		margin-top: 10px;
+	}
+	.main-header{
+		display: inline-block;
+	}
 </style>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 copyP">
-			<h2>Welcome, <%= @user.first %> <%= @user.last %></h2>
+			<h2 class="main-header">Welcome, <%= @user.first %> <%= @user.last %></h2>
+			<a href="/logout" class="logout">Logout</a>
 			<h3>Corporate Traveler Profile</h3>
 			<% if flash[:errors] %>
 				<% flash[:errors].each do |val| %>

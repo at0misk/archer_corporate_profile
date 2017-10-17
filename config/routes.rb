@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   post '/admins/users/search' => 'admins#users_search'
   get '/admins/users_found' => 'admins#users_found'
   get '/admins/delete_user/:id' => 'admins#delete_user'
+  get '/logout' => 'sessions#logout'
 end
