@@ -16,6 +16,7 @@
 	.lookup-div{
 		float: right;
 		margin-top: 15px;
+		text-align: right;
 	}
 	.top-col{
 	    background-color: #587fa2;
@@ -42,7 +43,7 @@
 			</div>
 			<div class="col-sm-4">
 				<div class="lookup-div">
-					<h4 class="lookup-header">Search</h4>
+					<!-- <h4 class="lookup-header">Search</h4> -->
 					<form class="navbar-form" role="search" method="post" action="/admins/users/search">
 					<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
 					<div class="input-group">
@@ -68,7 +69,7 @@
 						<th>Email</th>
 						<th>Home Phone</th>
 						<th>Cell Phone</th>
-						<th>Date of Birth</th>
+						<!-- <th>Date of Birth</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -80,7 +81,6 @@
 							<td><%= val.email %></td>
 							<td><%= val.home_phone %></td>
 							<td><%= val.cell_phone %></td>
-							<td><%= val.dob %></td>
 						</tr>
 					<% end %>
 				</tbody>
