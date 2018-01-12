@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016152705) do
+ActiveRecord::Schema.define(version: 20180112165959) do
 
   create_table "users", force: :cascade do |t|
     t.string   "entry"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20171016152705) do
     t.string   "smoking"
     t.string   "password_digest"
     t.boolean  "permod"
+    t.string   "middle"
   end
 
 end
