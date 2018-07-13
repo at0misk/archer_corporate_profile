@@ -531,12 +531,12 @@
 					<div class="row input-row radio-row">
 					<span class="radio-label col-sm-4">Smoking Preference:</span>
 					  <div class="col-sm-8">
-						  <% if @user.smoking == "on" %>
-							  <label class="radio-inline"><input type="radio" name="user[smoking]" checked>Smoking</label>
-							  <label class="radio-inline"><input type="radio" name="user[smoking]">Non-Smoking</label>
+						  <% if @user.smoking == "Smoking" || @user.smoking == "on" %>
+							  <label class="radio-inline"><input type="radio" name="user[smoking]" value="Smoking" checked>Smoking</label>
+							  <label class="radio-inline"><input type="radio" name="user[smoking]" value="Non-Smoking">Non-Smoking</label>
 						  <% else %>
-							  <label class="radio-inline"><input type="radio" name="user[smoking]">Smoking</label>
-							  <label class="radio-inline"><input type="radio" name="user[smoking]" checked>Non-Smoking</label>
+							  <label class="radio-inline"><input type="radio" name="user[smoking]" value="Smoking">Smoking</label>
+							  <label class="radio-inline"><input type="radio" name="user[smoking]" value="Non-Smoking" checked>Non-Smoking</label>
 						  <% end %>
 					  	</div>
 					</div>
