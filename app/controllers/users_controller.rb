@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	skip_before_action :verify_authenticity_token
 	def import
 		User.import(params[:file])
 		redirect_to root_url, notice: "Data Imported"
